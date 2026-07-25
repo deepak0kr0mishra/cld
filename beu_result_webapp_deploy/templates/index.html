@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BEU Result Console</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <main class="shell">
+        <section class="topbar">
+            <div class="brand">
+                <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+                    <rect x="7" y="6" width="34" height="36" rx="6"></rect>
+                    <path d="M15 17h18M15 25h18M15 33h10"></path>
+                    <circle cx="35" cy="35" r="5"></circle>
+                    <path d="m32.5 35 1.6 1.7 3.2-3.7"></path>
+                </svg>
+                <div>
+                    <p class="eyebrow">Batch scraper</p>
+                    <h1>BEU Result Console</h1>
+                </div>
+            </div>
+            <div class="status-pill" id="statusPill">Idle</div>
+        </section>
+
+        <section class="control-panel">
+            <form id="scrapeForm" class="form-grid">
+                <label>
+                    <span>College code</span>
+                    <input name="collegeCode" inputmode="numeric" maxlength="3" value="157" required>
+                </label>
+                <label>
+                    <span>Year</span>
+                    <input name="year" inputmode="numeric" maxlength="4" value="25" required>
+                </label>
+                <label>
+                    <span>Branch code</span>
+                    <input name="branchCode" inputmode="numeric" maxlength="3" value="105" required>
+                </label>
+                <button id="runButton" type="submit">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                    Run
+                </button>
+            </form>
+        </section>
+
+        <section class="metrics">
+            <div>
+                <span>Checked</span>
+                <strong id="checkedCount">0</strong>
+            </div>
+            <div>
+                <span>Records</span>
+                <strong id="recordCount">0</strong>
+            </div>
+            <div>
+                <span>Failures</span>
+                <strong id="failureCount">0</strong>
+            </div>
+            <div>
+                <span>Current</span>
+                <strong id="currentReg">-</strong>
+            </div>
+        </section>
+
+        <section class="progress-wrap">
+            <div class="progress-meta">
+                <span id="progressLabel">Ready</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <section class="results-panel">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow">Results</p>
+                    <h2>All fetched registrations</h2>
+                </div>
+                <button class="ghost" id="downloadButton" type="button" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 20h16"></path>
+                    </svg>
+                    JSON
+                </button>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reg no</th>
+                            <th>Name</th>
+                            <th>College</th>
+                            <th>Course</th>
+                            <th>SGPA</th>
+                            <th>CGPA</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                        <tr class="empty-row">
+                            <td colspan="7">No run yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

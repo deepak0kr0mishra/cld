@@ -1,0 +1,5 @@
+Flask==3.1.2
+gunicorn==23.0.0
+selenium==4.46.0
+setuptools==83.0.0
+undetected-chromedriver==3.5.5
